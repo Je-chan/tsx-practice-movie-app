@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
-export default function MainPage(): ReactNode {
+export default function MainPage() {
   return <div>Main Page</div>;
 }
