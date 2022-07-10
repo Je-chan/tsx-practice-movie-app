@@ -1,12 +1,15 @@
-import React, { useRef, useState } from 'react';
-import styled from '@emotion/styled/macro';
-import { AiOutlineSearch } from 'react-icons/ai';
-import { useRecoilState } from 'recoil';
+import React, { useRef, useState } from "react";
+import styled from "@emotion/styled/macro";
+import { AiOutlineSearch } from "react-icons/ai";
+import { useRecoilState } from "recoil";
 
-import { loginModalOpenState, signupModalOpenState } from '../features/app/atom';
+import {
+  loginModalOpenState,
+  signupModalOpenState,
+} from "../features/app/atom";
 
-import useMovieSearch from '../features/movie/useMovieSearch';
-import useClickOutside from '../hooks/useClickOutside';
+import useMovieSearch from "../features/movie/useMovieSearch";
+import useClickOutside from "../hooks/useClickOutside";
 
 const Base = styled.header`
   width: 100%;
@@ -27,8 +30,7 @@ const Navigation = styled.nav`
   max-width: 1200px;
 `;
 
-const MenuListWrapper = styled.div`
-`;
+const MenuListWrapper = styled.div``;
 
 const MenuList = styled.ul`
   list-style: none;
@@ -42,14 +44,14 @@ const Menu = styled.li`
   align-items: center;
   height: 62px;
   flex-shrink: 0;
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     margin: 0 0 0 24px;
   }
 `;
 
 const MenuButton = styled.button<{ active?: boolean }>`
   font-size: 15px;
-  color: ${({ active }) => active ? 'rgb(53, 53, 53)' : 'rgb(126, 126, 126)'};
+  color: ${({ active }) => (active ? "rgb(53, 53, 53)" : "rgb(126, 126, 126)")};
   cursor: pointer;
   border: none;
   background: none;
@@ -181,24 +183,26 @@ const Header: React.FC<Props> = () => {
   const searchRef = useRef<HTMLDivElement>(null);
   const pathname = window.location.pathname;
 
-  const [searchKeyword, setSearchKeyword] = useState<string>('');
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
 
-  const [isLoginModalOpen, setIsLoginModalOpen] = useRecoilState(loginModalOpenState);
-  const [isSignupModalOpen, setIsSignupModalOpen] = useRecoilState(signupModalOpenState);
+  const [isLoginModalOpen, setIsLoginModalOpen] =
+    useRecoilState(loginModalOpenState);
+  const [isSignupModalOpen, setIsSignupModalOpen] =
+    useRecoilState(signupModalOpenState);
 
   const handleLoginModal = (): void => {
     !isLoginModalOpen && setIsLoginModalOpen(true);
-  }
+  };
 
   const handleSignup = (): void => {
     !isSignupModalOpen && setIsSignupModalOpen(true);
-  }
+  };
 
   const handleKeyword = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchKeyword(e.target.value);
-  }
+  };
 
-  useClickOutside(searchRef, () => setSearchKeyword(''));
+  useClickOutside(searchRef, () => setSearchKeyword(""));
 
   const { data: searchResult } = useMovieSearch(searchKeyword);
 
@@ -210,19 +214,19 @@ const Header: React.FC<Props> = () => {
             <Menu>
               <Link href="/">
                 <TextLogo>
-                  <span className="primary">WATCHOUT</span>
-                  <span>PEDIA</span>
+                  <span className="primary">LIEBE</span>
+                  <span>Movie</span>
                 </TextLogo>
               </Link>
             </Menu>
             <Menu>
               <Link href="/">
-                <MenuButton active={pathname === '/'}>영화</MenuButton>
+                <MenuButton active={pathname === "/"}>영화</MenuButton>
               </Link>
             </Menu>
             <Menu>
               <Link href="/tv">
-                <MenuButton active={pathname === '/tv'}>TV 프로그램</MenuButton>
+                <MenuButton active={pathname === "/tv"}>TV 프로그램</MenuButton>
               </Link>
             </Menu>
             <SearchMenu>
@@ -241,13 +245,16 @@ const Header: React.FC<Props> = () => {
               </SearchContainer>
               <SearchResultWrapper>
                 <SearchResultList>
-                  {
-                    searchResult?.results.map((searchResultItem) => (
-                      <Link href={`/movie/${searchResultItem.id}`} key={searchResultItem.id}>
-                        <SearchResultListItem>{searchResultItem.title}</SearchResultListItem>
-                      </Link>
-                    ))
-                  }
+                  {searchResult?.results.map((searchResultItem) => (
+                    <Link
+                      href={`/movie/${searchResultItem.id}`}
+                      key={searchResultItem.id}
+                    >
+                      <SearchResultListItem>
+                        {searchResultItem.title}
+                      </SearchResultListItem>
+                    </Link>
+                  ))}
                 </SearchResultList>
               </SearchResultWrapper>
             </SearchMenu>
@@ -261,7 +268,7 @@ const Header: React.FC<Props> = () => {
         </MenuListWrapper>
       </Navigation>
     </Base>
-  )
-}
+  );
+};
 
 export default Header;

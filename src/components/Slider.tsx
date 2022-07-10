@@ -1,21 +1,31 @@
-import React from 'react';
-import ReactSlider, { Settings } from 'react-slick';
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
-import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
+import React from "react";
+import ReactSlider, { Settings } from "react-slick";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 interface Props {
   settings?: Settings;
+  children?: any;
 }
 
-const ArrowButton = styled.button<{ pos?: 'left' | 'right' }>`
+const ArrowButton = styled.button<{ pos?: "left" | "right" }>`
   padding: 16px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   z-index: 1;
   top: 50%;
   background-color: #fff;
-  ${({ pos }) => pos === 'left' ? css`left: 0; transform: translate(-50%, -50%)` : css`right: 0; transform: translate(50%, -50%)`};
+  ${({ pos }) =>
+    pos === "left"
+      ? css`
+          left: 0;
+          transform: translate(-50%, -50%);
+        `
+      : css`
+          right: 0;
+          transform: translate(50%, -50%);
+        `};
   &:before {
     content: initial;
   }
@@ -48,13 +58,11 @@ const DEFAULT_SETTINGS: Settings = {
     <ArrowButton pos="right">
       <MdArrowForwardIos />
     </ArrowButton>
-  )
+  ),
 };
 
 const Slider: React.FC<Props> = ({ settings = DEFAULT_SETTINGS, children }) => (
-  <ReactSlider {...settings}>
-    {children}
-  </ReactSlider>
-)
+  <ReactSlider {...settings}>{children}</ReactSlider>
+);
 
 export default Slider;
