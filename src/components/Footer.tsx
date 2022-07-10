@@ -1,18 +1,18 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
 const Base = styled.footer`
   display: block;
   box-sizing: border-box;
   width: 100%;
-`;
+`
 
 const Section = styled.section`
   background-color: #1c1d1f;
 `;
 
 const Statistics = styled.section`
-  background-color: #101113;
+  background: #101113;
   width: 100%;
   height: 62px;
   line-height: 62px;
@@ -32,7 +32,7 @@ const Summary = styled.span`
 const Emphasis = styled.em`
   color: #ff0558;
   font-size: 19px;
-  font-weight: 550;
+  font-weight: 500;
   line-height: 22px;
 `;
 
@@ -41,22 +41,16 @@ const Container = styled.section`
   padding: 20px 0 38px;
 `;
 
-const ContentWrapper = styled.section`
+const ContentWrapper = styled.div`
   display: flex;
   margin: 0 60px;
 `;
 
 const Left = styled.div``;
 
-const Right = styled.div``;
+const TermsAndPolicy = styled.ul``;
 
-const TermAndPolicy = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-
-const TermAndPolicyItem = styled.li`
+const TermsAndPolicyItem = styled.li`
   display: inline-block;
   color: #a5a5a7;
   font-size: 13px;
@@ -77,30 +71,37 @@ const TermAndPolicyItem = styled.li`
   }
 `;
 
-export default function Footer() {
-  return (
-    <Base>
-      <Section>
-        <Statistics>
-          <Summary>
-            지금까지&nbsp;
-            <Emphasis>*644,934,343 개의 평가가</Emphasis>
-            &nbsp; 쌓였습니다.
-          </Summary>
-        </Statistics>
-        <Container>
-          <ContentWrapper>
-            <Left>
-              <TermAndPolicy>
-                <TermAndPolicyItem>서비스 이용 약관</TermAndPolicyItem>
-                <TermAndPolicyItem>개인정보 처리 방침</TermAndPolicyItem>
-                <TermAndPolicyItem>회사 정보</TermAndPolicyItem>
-              </TermAndPolicy>
-            </Left>
-            <Right />
-          </ContentWrapper>
-        </Container>
-      </Section>
-    </Base>
-  );
+const Right = styled.div``;
+
+const Footer: React.FC = () => {
+
+ return (
+   <Base>
+     <Section>
+       <Statistics>
+         <Summary>
+           지금까지&nbsp;
+           <Emphasis>
+             ★ 633,986,967 개의 평가가
+           </Emphasis>
+           &nbsp;쌓였어요.
+         </Summary>
+       </Statistics>
+       <Container>
+         <ContentWrapper>
+           <Left>
+             <TermsAndPolicy>
+               <TermsAndPolicyItem>서비스 이용약관</TermsAndPolicyItem>
+               <TermsAndPolicyItem>개인정보 처리방침</TermsAndPolicyItem>
+               <TermsAndPolicyItem>회사 안내</TermsAndPolicyItem>
+             </TermsAndPolicy>
+           </Left>
+           <Right />
+         </ContentWrapper>
+       </Container>
+     </Section>
+   </Base>
+ )
 }
+
+export default Footer;
