@@ -1,9 +1,12 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import Modal from '../../components/Modal';
-import FacebookLogin, {ReactFacebookFailureResponse, ReactFacebookLoginInfo} from 'react-facebook-login';
-import { useRecoilState } from 'recoil';
-import { loginModalOpenState, signupModalOpenState } from './atom';
+import React from "react";
+import styled from "@emotion/styled";
+import Modal from "../../components/Modal";
+import FacebookLogin, {
+  ReactFacebookFailureResponse,
+  ReactFacebookLoginInfo,
+} from "react-facebook-login";
+import { useRecoilState } from "recoil";
+import { loginModalOpenState, signupModalOpenState } from "./atom";
 
 const Container = styled.div`
   width: 375px;
@@ -146,21 +149,25 @@ const FacebookLoginWrapper = styled.div`
 interface Props {}
 
 const SignupModal: React.FC<Props> = () => {
-  const [isLoginModalOpen, setIsLoginModalOpen] = useRecoilState(loginModalOpenState);
-  const [isSignupModalOpen, setIsSignupModalOpen] = useRecoilState(signupModalOpenState);
+  const [isLoginModalOpen, setIsLoginModalOpen] =
+    useRecoilState(loginModalOpenState);
+  const [isSignupModalOpen, setIsSignupModalOpen] =
+    useRecoilState(signupModalOpenState);
 
-  const responseFacebook = (userInfo: ReactFacebookLoginInfo | ReactFacebookFailureResponse) => {
+  const responseFacebook = (
+    userInfo: ReactFacebookLoginInfo | ReactFacebookFailureResponse
+  ) => {
     console.log(userInfo);
-  }
+  };
 
   const handleClose = (): void => {
     setIsSignupModalOpen(false);
-  }
+  };
 
   const handleLogin = (): void => {
     handleClose();
     !isLoginModalOpen && setIsLoginModalOpen(true);
-  }
+  };
 
   return (
     <Modal isOpen={isSignupModalOpen} onClose={handleClose}>
@@ -189,30 +196,28 @@ const SignupModal: React.FC<Props> = () => {
                   <Input placeholder="비밀번호" />
                 </InputLabel>
               </InputWrapper>
-              <SubmitButton>
-                회원가입
-              </SubmitButton>
+              <SubmitButton>회원가입</SubmitButton>
             </Form>
             <LoginWrapper>
               이미 가입하셨나요? <Login onClick={handleLogin}>로그인</Login>
             </LoginWrapper>
-            <Divider />
-            <FacebookLoginWrapper>
-              <FacebookLogin
-                cssClass="my-facebook-button-class"
-                autoLoad
-                appId={''}
-                fields="name,email,picture"
-                callback={responseFacebook}
-                icon="fa-facebook"
-                textButton="Facebook 으로 로그인"
-              />
-            </FacebookLoginWrapper>
+            {/*<Divider />*/}
+            {/*<FacebookLoginWrapper>*/}
+            {/*  <FacebookLogin*/}
+            {/*    cssClass="my-facebook-button-class"*/}
+            {/*    autoLoad*/}
+            {/*    appId={''}*/}
+            {/*    fields="name,email,picture"*/}
+            {/*    callback={responseFacebook}*/}
+            {/*    icon="fa-facebook"*/}
+            {/*    textButton="Facebook 으로 로그인"*/}
+            {/*  />*/}
+            {/*</FacebookLoginWrapper>*/}
           </Section>
         </ContentWrapper>
       </Container>
     </Modal>
-  )
-}
+  );
+};
 
 export default SignupModal;
