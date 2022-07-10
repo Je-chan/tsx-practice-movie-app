@@ -1,11 +1,14 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 
-import LatestMovieSection from "../features/movie/latest";
-import NowPlayingSection from "../features/movie/nowPlaying";
+import UpcomingMovieSection from '../features/movie/upcoming';
+import LatestMovieSection from '../features/movie/latest';
+import NowPlayingSection from '../features/movie/nowPlaying';
+import PopularMovieSection from '../features/movie/popular';
+import TopRateMovieSection from '../features/movie/topRate';
 
 const Main = styled.main`
   max-width: 1200px;
@@ -17,15 +20,20 @@ const Container = styled.div`
   padding: 24px 0;
 `;
 
-export default function MainPage() {
-  return (
-    <>
-      <Header />
-      <Main>
+const MainPage: React.FC = () => (
+  <>
+    <Header />
+    <Main>
+      <Container>
         <LatestMovieSection />
+        <UpcomingMovieSection />
         <NowPlayingSection />
-      </Main>
-      <Footer />
-    </>
-  );
-}
+        <PopularMovieSection />
+        <TopRateMovieSection />
+      </Container>
+    </Main>
+    <Footer />
+  </>
+)
+
+export default MainPage;
