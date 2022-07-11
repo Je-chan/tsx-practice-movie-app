@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import FacebookLogin, {
+import {
   ReactFacebookFailureResponse,
   ReactFacebookLoginInfo,
 } from "react-facebook-login";
@@ -217,18 +217,6 @@ const LoginModal: React.FC<Props> = () => {
               계정이 없으신가요 ?{" "}
               <FindAccount onClick={handleSignup}>회원가입</FindAccount>
             </FindAccountWrapper>
-            {/*<Divider />*/}
-            {/*<FacebookLoginWrapper>*/}
-            {/*  <FacebookLogin*/}
-            {/*    cssClass="my-facebook-button-class"*/}
-            {/*    autoLoad*/}
-            {/*    appId={''}*/}
-            {/*    fields="name,email,picture"*/}
-            {/*    callback={responseFacebook}*/}
-            {/*    icon="fa-facebook"*/}
-            {/*    textButton="Facebook 으로 로그인"*/}
-            {/*  />*/}
-            {/*</FacebookLoginWrapper>*/}
           </Section>
         </ContentWrapper>
       </Container>
